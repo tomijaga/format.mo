@@ -54,9 +54,9 @@ module Format{
             case (#fixed arr) {
                 let size:Int = arr.size();
                 if (size == 0) return "[ ]";
-
+            
                 for (i in  Iter.range(0, size-1)){
-                    str:= str # (if (i < size-1) {formatter(arr[i]) # ", "} else {""});
+                    str:= str # formatter(arr[i]) # (if (i < size-1) {", "} else {""});
                 };
             };
 
@@ -65,7 +65,7 @@ module Format{
                 if (size == 0) return "[ ]";
 
                 for (i in  Iter.range(0, size-1)){
-                    str:= str # (if (i < size-1) {formatter(arr[i]) # ", "} else {""});
+                    str:= str # formatter(arr[i]) # (if (i < size-1) { ", "} else {""});
                 };
             };
         };
