@@ -1,7 +1,7 @@
 # Format.mo
 A text formatter for motoko
 
-```
+```motoko
     F.format("Hello, {}!", [#text("World")])  // -> Hello, World!
     F.format("{} * {} = {}", 
         [#num(2), #num(2), #num(4)])          // -> 2 * 2 = 4
