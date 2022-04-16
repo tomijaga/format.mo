@@ -35,7 +35,7 @@ module Format{
         let argsLen = varArgs.size();
 
         for (fstr in Text.split(fstring, #text "{}")){
-            result := result # fstr # (if (i < argsLen) { serialize(varArgs[i])} else {""}) ; 
+            result := result # fstr # (if (i < argsLen) { serialize(varArgs[i])} else {"{}"});
             i:= i+1;
         };
 
@@ -47,7 +47,7 @@ module Format{
         #fixed: [T];
     };
 
-    private func arrayToText<T>(input: ArrayType<T>, formatter: T -> Text): Text {
+    func arrayToText<T>(input: ArrayType<T>, formatter: T -> Text): Text {
         var str = "[";
 
         switch input{
@@ -73,7 +73,7 @@ module Format{
          str # "]"
     };
 
-    private func serialize(varArg: Types): Text {
+    func serialize(varArg: Types): Text {
 
         switch varArg {
             case (#text(t)) t;
