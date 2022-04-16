@@ -11,6 +11,8 @@ A text formatter for motoko
 
 ## Variant Types
 
+`#bool` - Bool
+
 `#num` - Nat or Int
 
 `#numArray` - Nat or Int array
