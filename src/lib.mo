@@ -6,13 +6,18 @@ import Char "mo:base/Char";
 import Func "mo:base/Func";
 import Bool "mo:base/Bool";
 import Int "mo:base/Int";
-
+import Float "mo:base/Float";
 
 module Format{
+
+    type Object = {toText: ()->Text};
     type Types = {
         #num: Int;
         #numArray: [Int];
 
+        #float: Float;
+        #floatArray: [Float];
+        
         // #numArrayMut: [var Int];
         #natArrayMut: [var Nat];
         #intArrayMut: [var Int];
@@ -27,6 +32,9 @@ module Format{
 
         #array: [Types];
         #bool: Bool;
+        #obj: Object;
+        #objArray: [Object];
+
     };
 
     public func format(fstring: Text, varArgs: [Types]): Text {
@@ -35,7 +43,7 @@ module Format{
         let argsLen = varArgs.size();
 
         for (fstr in Text.split(fstring, #text "{}")){
-            result := result # fstr # (if (i < argsLen) { serialize(varArgs[i])} else {"{}"});
+            result := result # fstr # (if (i < argsLen) { serialize(varArgs[i])} else {""});
             i:= i+1;
         };
 
@@ -82,6 +90,11 @@ module Format{
 
             case (#num(n)) Int.toText(n);
             case (#numArray(arr)) arrayToText(#fixed arr, Int.toText);
+
+            case (#float(f)) Float.format( #fix(2), f);
+            case (#floatArray(arr)) arrayToText<Float>(#fixed arr, func (f: Float) = Float.format( #fix(2), f));
+            
+
             // case (#numArrayMut(arr)) arrayToText<Int>(#mut arr, Int.toText);
             case (#natArrayMut(arr)) arrayToText<Nat>(#mut arr, Nat.toText);
             case (#intArrayMut(arr)) arrayToText<Int>(#mut arr, Int.toText);
@@ -93,6 +106,10 @@ module Format{
 
             case (#bool(b)) Bool.toText(b);
             case (#array(arr)) arrayToText(#fixed arr, serialize);
+
+            case (#obj(obj)) obj.toText();
+            case (#objArray(arr)) arrayToText<Object>(#fixed arr, func(obj){obj.toText()});
+
         }
     }
 }
