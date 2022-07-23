@@ -33,6 +33,22 @@ let success = run([
 
             let str = F.format("{}", [#obj(point)]);
             assertTrue( str == "(23, 34)")
+        }),
+        it("debug_show", do {
+            Debug.print(debug_show( 1.234));
+
+            let point:Any = object{
+                public let x = 23;
+                public let y = 34;
+                
+                public func toText(): Text {
+                    F.format("({}, {})", [#num(x), #num(y)])
+                };
+            };
+            // Debug.print(debug_show (point['x']));
+
+            let notPoint:Any = 2;
+            assertTrue( point == notPoint)
         })
     ])
 ]);

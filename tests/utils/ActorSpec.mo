@@ -1,7 +1,7 @@
-import Debug "mo:base/Debug";
 import Array "mo:base/Array";
-import Iter "mo:base/Iter";
+import Debug "mo:base/Debug";
 import Int "mo:base/Int";
+import Iter "mo:base/Iter";
 import Nat "mo:base/Nat";
 import Text "mo:base/Text";
 
@@ -11,7 +11,6 @@ module {
     groups : [Group];
     status : Status;
   };
-
 
   type Status = {
     failed : Nat;
