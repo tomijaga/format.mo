@@ -7,7 +7,6 @@ import Func "mo:base/Func";
 import Bool "mo:base/Bool";
 import Int "mo:base/Int";
 import Float "mo:base/Float";
-import Debug "mo:base/Debug";
 
 module Format{
 
